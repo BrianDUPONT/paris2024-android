@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import bts.sio.paris2024.model.views.ActualiteList
 import bts.sio.paris2024.model.views.EpreuveList
 import bts.sio.paris2024.model.views.AthleteList
+import bts.sio.paris2024.model.views.SportList
 
 
 @Composable
@@ -31,7 +32,8 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
             AthleteList()
         }
         composable("sports_list") {
-            Text("Page sports")
+            //Text("Page sports")
+            SportList()
         }
         composable("pays_list") {
             Text("Page pays")
