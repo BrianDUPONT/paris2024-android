@@ -1,16 +1,15 @@
 package bts.sio.paris2024.views
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import bts.sio.paris2024.model.views.ActualiteList
-import bts.sio.paris2024.model.views.EpreuveList
-import bts.sio.paris2024.model.views.AthleteList
-import bts.sio.paris2024.model.views.PaysList
-import bts.sio.paris2024.model.views.SportList
+import bts.sio.paris2024.model.views.actualites.ActualiteList
+import bts.sio.paris2024.model.views.epreuves.EpreuveList
+import bts.sio.paris2024.model.views.athletes.AthleteList
+import bts.sio.paris2024.model.views.pays.PaysList
+import bts.sio.paris2024.model.views.sports.SportList
 
 
 @Composable
