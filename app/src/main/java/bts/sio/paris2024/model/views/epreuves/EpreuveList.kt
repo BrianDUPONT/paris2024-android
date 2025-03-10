@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.views
+package bts.sio.paris2024.model.views.epreuves
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,18 +9,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import bts.sio.paris2024.model.viewsmodel.PaysViewModel
+import bts.sio.paris2024.model.viewsmodel.EpreuveViewModel
 
 @Composable
-fun PaysList(viewModel: PaysViewModel = viewModel()) {
+fun EpreuveList(viewModel: EpreuveViewModel = viewModel()) {
     // Observer les données de manière réactive
-    val pays by viewModel.pays.collectAsState()
+    val epreuves by viewModel.epreuves.collectAsState()
 
     LazyColumn(
         modifier = Modifier.padding(8.dp)
     ) {
-        items(pays) { pays ->
-            PaysCard(pays = pays)
+        items(epreuves) { epreuve ->
+            EpreuveCard(epreuve = epreuve)
         }
     }
 }

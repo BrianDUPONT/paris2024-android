@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.views
+package bts.sio.paris2024.model.views.athletes
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn

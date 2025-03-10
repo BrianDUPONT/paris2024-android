@@ -1,7 +1,5 @@
-package bts.sio.paris2024.model.views
+package bts.sio.paris2024.model.views.sports
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,13 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import bts.sio.paris2024.model.Epreuve
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import bts.sio.paris2024.model.Sport
 
 
 @Composable
-fun EpreuveCard(epreuve: Epreuve) {
+fun SportCard(sport: Sport) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -30,7 +26,8 @@ fun EpreuveCard(epreuve: Epreuve) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            Text(text = epreuve.nom, style = MaterialTheme.typography.bodyLarge)
+            Text(text = sport.nom, style = MaterialTheme.typography.bodyLarge)
+            Text(text = sport.descriptif, style = MaterialTheme.typography.bodyMedium)
         }
     }
 }

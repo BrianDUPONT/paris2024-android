@@ -1,7 +1,5 @@
-package bts.sio.paris2024.model.views
+package bts.sio.paris2024.model.views.actualites
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,8 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import bts.sio.paris2024.model.Actualite
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 
 @Composable
