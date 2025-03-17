@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import bts.sio.paris2024.model.Actualite
+import java.time.format.DateTimeFormatter
 
 
 @Composable
@@ -26,8 +27,13 @@ fun ActualiteCard(actualite: Actualite) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
+
+            val dateFormatter = DateTimeFormatter.ofPattern( "dd MMM yyyy")
+            val formattedDate = actualite.date.format(dateFormatter)
+
             Text(text = actualite.titre, style = MaterialTheme.typography.bodyLarge)
             Text(text = actualite.contenu, style = MaterialTheme.typography.bodyMedium)
+            Text(text = formattedDate, style = MaterialTheme.typography.bodySmall)
         }
     }
 }
