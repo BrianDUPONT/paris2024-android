@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.views.pays
+package bts.sio.paris2024.views.pays
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import bts.sio.paris2024.model.viewsmodel.PaysViewModel
+import bts.sio.paris2024.viewsmodel.PaysViewModel
 
 @Composable
 fun PaysList(viewModel: PaysViewModel = viewModel()) {

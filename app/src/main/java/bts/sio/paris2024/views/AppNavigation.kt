@@ -5,12 +5,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import bts.sio.paris2024.model.views.actualites.ActualiteList
-import bts.sio.paris2024.model.views.epreuves.EpreuveList
-import bts.sio.paris2024.model.views.athletes.AthleteList
-import bts.sio.paris2024.model.views.joueurs.JoueurList
-import bts.sio.paris2024.model.views.pays.PaysList
-import bts.sio.paris2024.model.views.sports.SportList
+import bts.sio.paris2024.views.actualites.ActualiteList
+import bts.sio.paris2024.views.epreuves.EpreuveList
+import bts.sio.paris2024.views.athletes.AthleteList
+import bts.sio.paris2024.views.pays.PaysList
+import bts.sio.paris2024.views.sports.SportList
+
 
 @Composable
 fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifier) {

@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.views.epreuves
+package bts.sio.paris2024.views.pays
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,11 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import bts.sio.paris2024.model.Epreuve
+import bts.sio.paris2024.model.Pays
 
 
 @Composable
-fun EpreuveCard(epreuve: Epreuve) {
+fun PaysCard(pays: Pays) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -26,7 +26,7 @@ fun EpreuveCard(epreuve: Epreuve) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            Text(text = epreuve.nom, style = MaterialTheme.typography.bodyLarge)
+            Text(text = pays.nom, style = MaterialTheme.typography.bodyLarge)
         }
     }
 }
