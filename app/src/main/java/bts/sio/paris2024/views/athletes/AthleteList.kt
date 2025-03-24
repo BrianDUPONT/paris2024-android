@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.views.epreuves
+package bts.sio.paris2024.views.athletes
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,12 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import bts.sio.paris2024.model.viewsmodel.EpreuveViewModel
+import bts.sio.paris2024.viewsmodel.AthleteViewModel
 
 @Composable
-fun EpreuveList(viewModel: EpreuveViewModel = viewModel()) {
+fun AthleteList(viewModel: AthleteViewModel = viewModel()) {
     // Observer les données de manière réactive
-    val epreuves by viewModel.epreuves.collectAsState()
+    val athletes by viewModel.athletes.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
 
@@ -25,8 +25,8 @@ fun EpreuveList(viewModel: EpreuveViewModel = viewModel()) {
         isLoading -> CircularProgressIndicator()
         errorMessage != null -> Text(text = errorMessage!!, color = Color.Red)
         else -> LazyColumn {
-            items(epreuves) { epreuve ->
-                EpreuveCard(epreuve = epreuve)
+            items(athletes) { athlete ->
+                AthleteCard(athlete = athlete)
             }
         }
     }

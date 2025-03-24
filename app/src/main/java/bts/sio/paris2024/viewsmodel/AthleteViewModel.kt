@@ -1,8 +1,8 @@
-package bts.sio.paris2024.model.viewsmodel
+package bts.sio.paris2024.viewsmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import bts.sio.paris2024.model.Epreuve
+import bts.sio.paris2024.model.Athlete
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewModelScope
 import bts.sio.paris2024.api.RetrofitInstance
@@ -10,11 +10,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class EpreuveViewModel : ViewModel() {
+class AthleteViewModel : ViewModel() {
 
-    // Liste mutable des epreuves
-    private val _epreuves = MutableStateFlow<List<Epreuve>>(emptyList())
-    val epreuves: StateFlow<List<Epreuve>> = _epreuves
+    // Liste mutable des athletes
+    private val _athletes = MutableStateFlow<List<Athlete>>(emptyList())
+    val athletes: StateFlow<List<Athlete>> = _athletes
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
@@ -23,17 +23,17 @@ class EpreuveViewModel : ViewModel() {
     val errorMessage: StateFlow<String?> = _errorMessage
 
     init {
-        getEpreuves()
+        getAthletes()
     }
 
-    private fun getEpreuves() {
+    private fun getAthletes() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null  // Réinitialise l'erreur avant l'appel
 
             try {
-                val response = RetrofitInstance.api.getEpreuves()
-                _epreuves.value = response
+                val response = RetrofitInstance.api.getAthletes()
+                _athletes.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"
             } finally {

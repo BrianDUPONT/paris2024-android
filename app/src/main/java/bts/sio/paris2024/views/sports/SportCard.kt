@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.views.sports
+package bts.sio.paris2024.views.sports
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

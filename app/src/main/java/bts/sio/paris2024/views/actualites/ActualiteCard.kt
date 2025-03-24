@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.views.actualites
+package bts.sio.paris2024.views.actualites
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
