@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Newspaper
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Sports
+import androidx.compose.material.icons.filled.SportsEsports
 import androidx.compose.material.icons.filled.SportsMartialArts
 import androidx.compose.material.icons.filled.SportsRugby
 import androidx.compose.material3.Icon
@@ -33,8 +34,10 @@ fun AppBottomBar(navController: NavController) {
         BottomNavItem("Epreuves", "epreuves_list", Icons.Filled.Flag),
         BottomNavItem("Sports", "sports_list", Icons.Filled.SportsMartialArts),
         BottomNavItem("Athletes", "athletes_list", Icons.Filled.Person),
-        BottomNavItem("Pays", "pays_list", Icons.Filled.Language)
-    )
+        BottomNavItem("Pays", "pays_list", Icons.Filled.Language),
+        BottomNavItem("Joueurs", "joueurs_list", Icons.Filled.SportsEsports),
+
+        )
 
     var selectedItem by remember { mutableStateOf(0) }
 
