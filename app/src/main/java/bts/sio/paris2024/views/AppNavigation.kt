@@ -39,5 +39,8 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
             //Text("Page pays")
             PaysList()
         }
+        composable("joueurs_list") {
+            JoueurList()
+        }
     }
 }
