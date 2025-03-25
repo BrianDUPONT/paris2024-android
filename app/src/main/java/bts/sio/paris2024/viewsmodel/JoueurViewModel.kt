@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.viewsmodel
+package bts.sio.paris2024.viewsmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
