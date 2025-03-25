@@ -1,5 +1,6 @@
 package bts.sio.paris2024.views
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -9,6 +10,7 @@ import bts.sio.paris2024.views.actualites.ActualiteList
 import bts.sio.paris2024.views.epreuves.EpreuveList
 import bts.sio.paris2024.views.athletes.AthleteList
 import bts.sio.paris2024.views.joueurs.JoueurList
+import bts.sio.paris2024.views.pays.PaysAdd
 import bts.sio.paris2024.views.pays.PaysList
 import bts.sio.paris2024.views.sports.SportList
 
@@ -40,6 +42,11 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
             //Text("Page pays")
             PaysList(navController = navController)
         }
+
+        composable("add_pays") {
+            PaysAdd(navController = navController)
+        }
+
         composable("joueurs_list") {
             JoueurList()
         }
