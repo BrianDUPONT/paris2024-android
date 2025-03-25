@@ -38,7 +38,10 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         }
         composable("pays_list") {
             //Text("Page pays")
-            PaysList(navController = navController)
+            PaysList(navController = navController,
+                onAddPaysClick = { navController.navigate("add_pays")
+                }
+            )
         }
         composable("joueurs_list") {
             JoueurList()
