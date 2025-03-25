@@ -6,7 +6,10 @@ import bts.sio.paris2024.model.Epreuve
 import bts.sio.paris2024.model.Joueur
 import bts.sio.paris2024.model.Pays
 import bts.sio.paris2024.model.Sport
+import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
@@ -23,7 +26,7 @@ interface ApiService {
     suspend fun getPays(): List<Pays>
 
     @GET("/pays/{id}")
-    suspend fun getPaysById(@Path("id") id: Int): retrofit2.Response<Pays>
+    suspend fun getPaysById(@Path("id") id: Int): Response<Pays>
 
     @GET("/athletes")
     suspend fun getAthletes(): List<Athlete>
@@ -33,4 +36,7 @@ interface ApiService {
 
     @GET("/joueurs")
     suspend fun getJoueurs(): List<Joueur>
+
+    @POST("/pays")
+    suspend fun addPays(@Body pays: Pays): Response<Pays>
 }
