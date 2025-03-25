@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.views.joueurs
+package bts.sio.paris2024.views.joueurs
 
 import android.os.Build
 import androidx.annotation.RequiresApi

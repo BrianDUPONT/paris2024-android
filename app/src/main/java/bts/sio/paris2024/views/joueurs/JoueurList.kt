@@ -1,4 +1,4 @@
-package bts.sio.paris2024.model.views.joueurs
+package bts.sio.paris2024.views.joueurs
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -9,7 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
-import bts.sio.paris2024.model.viewsmodel.JoueurViewModel
+import bts.sio.paris2024.viewsmodel.JoueurViewModel
 
 @Composable
 fun JoueurList(viewModel: JoueurViewModel = viewModel()) {
