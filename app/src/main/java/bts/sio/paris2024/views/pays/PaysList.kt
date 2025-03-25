@@ -12,10 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import bts.sio.paris2024.viewsmodel.PaysViewModel
 
 @Composable
-fun PaysList(viewModel: PaysViewModel = viewModel()) {
+fun PaysList(viewModel: PaysViewModel = viewModel(), navController: NavController) {
     // Observer les données de manière réactive
     val pays by viewModel.pays.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -26,7 +27,7 @@ fun PaysList(viewModel: PaysViewModel = viewModel()) {
         errorMessage != null -> Text(text = errorMessage!!, color = Color.Red)
         else -> LazyColumn {
             items(pays) { pays ->
-                PaysCard(pays = pays)
+                PaysCard(pays = pays, navController = navController)
             }
         }
     }
