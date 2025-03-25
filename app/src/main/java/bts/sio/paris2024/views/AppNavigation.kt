@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import bts.sio.paris2024.views.actualites.ActualiteList
 import bts.sio.paris2024.views.epreuves.EpreuveList
 import bts.sio.paris2024.views.athletes.AthleteList
+import bts.sio.paris2024.views.joueurs.JoueurList
 import bts.sio.paris2024.views.pays.PaysList
 import bts.sio.paris2024.views.sports.SportList
 
@@ -37,10 +38,15 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         }
         composable("pays_list") {
             //Text("Page pays")
-            PaysList()
+            PaysList(navController = navController)
         }
         composable("joueurs_list") {
             JoueurList()
+        }
+
+        composable("athletes_list?paysId={paysId}") { backStackEntry ->
+            val paysId = backStackEntry.arguments?.getString("paysId")?.toIntOrNull()
+            AthleteList(paysId = paysId)
         }
     }
 }
