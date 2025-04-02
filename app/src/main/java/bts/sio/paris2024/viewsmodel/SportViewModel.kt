@@ -26,7 +26,7 @@ class SportViewModel : ViewModel() {
         getSports()
     }
 
-    private fun getSports() {
+    fun getSports() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null  // Réinitialise l'erreur avant l'appel

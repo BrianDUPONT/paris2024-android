@@ -14,11 +14,11 @@ import kotlinx.coroutines.launch
 class PaysViewModel : ViewModel() {
 
     // Liste mutable des pays
-    private val _pays = MutableStateFlow<List<Pays>>(emptyList())
-    val pays: StateFlow<List<Pays>> = _pays
+    private val _lesPays = MutableStateFlow<List<Pays>>(emptyList())
+    val lesPays: StateFlow<List<Pays>> = _lesPays
 
-    private val _paysById = MutableStateFlow<Pays?>(null)
-    val idPays: StateFlow<Pays?> = _paysById
+    private val _pays = MutableStateFlow<Pays?>(null)
+    val pays: StateFlow<Pays?> = _pays
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
@@ -28,17 +28,17 @@ class PaysViewModel : ViewModel() {
 
 
     init {
-        getPays()
+        getLesPays()
     }
 
-    fun getPays() {
+    fun getLesPays() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null  // Réinitialise l'erreur avant l'appel
 
             try {
-                val response = RetrofitInstance.api.getPays()
-                _pays.value = response
+                val response = RetrofitInstance.api.getLesPays()
+                _lesPays.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"
             } finally {
@@ -48,19 +48,19 @@ class PaysViewModel : ViewModel() {
         }
     }
 
-    fun getPaysById(paysId : Int) {
+    fun getPays(paysId: Int) {
         viewModelScope.launch {
             _isLoading.value = true
-            _errorMessage.value = null  // Réinitialise l'erreur avant l'appel
+            _errorMessage.value = null
 
             try {
-                val response = RetrofitInstance.api.getPaysById(paysId)
-                _paysById.value = response.body()
+                val response = RetrofitInstance.api.getPays(paysId)
+                _pays.value = response.body()
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"
             } finally {
                 _isLoading.value = false
-                println("Chargement du pays terminé")
+                println("Chargement du batiment terminé")
             }
         }
     }
@@ -74,7 +74,7 @@ class PaysViewModel : ViewModel() {
                 val response = RetrofitInstance.api.addPays(pays)
                 if (response.isSuccessful) {
                     // Ajout réussi, on met à jour la liste des bâtiments
-                    getPays() // Recharge les bâtiments pour inclure le nouveau
+                    getLesPays() // Recharge les bâtiments pour inclure le nouveau
                 } else {
                     _errorMessage.value = "Erreur lors de l'ajout du pays : ${response.message()}"
                 }
