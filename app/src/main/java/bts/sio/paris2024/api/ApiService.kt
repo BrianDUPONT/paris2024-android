@@ -23,10 +23,10 @@ interface ApiService {
     suspend fun getSports(): List<Sport>
 
     @GET("/pays")
-    suspend fun getPays(): List<Pays>
+    suspend fun getLesPays(): List<Pays>
 
     @GET("/pays/{id}")
-    suspend fun getPaysById(@Path("id") id: Int): Response<Pays>
+    suspend fun getPays(@Path("id") id: Int): Response<Pays>
 
     @GET("/athletes")
     suspend fun getAthletes(): List<Athlete>
@@ -39,4 +39,7 @@ interface ApiService {
 
     @POST("/pays")
     suspend fun addPays(@Body pays: Pays): Response<Pays>
+
+    @POST("/athlete")
+    suspend fun addAthlete(@Body athlete: Athlete): Response<Athlete>
 }

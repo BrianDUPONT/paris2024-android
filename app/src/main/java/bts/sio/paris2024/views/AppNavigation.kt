@@ -4,9 +4,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import bts.sio.paris2024.views.actualites.ActualiteList
+import bts.sio.paris2024.views.athletes.AthleteAdd
 import bts.sio.paris2024.views.epreuves.EpreuveList
 import bts.sio.paris2024.views.athletes.AthleteList
 import bts.sio.paris2024.views.joueurs.JoueurList
@@ -32,7 +35,7 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         }
         composable("athletes_list") {
             //Text("Page athletes")
-            AthleteList()
+            AthleteList(navController = navController)
         }
         composable("sports_list") {
             //Text("Page sports")
@@ -47,13 +50,25 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
             PaysAdd(navController = navController)
         }
 
+        composable(
+            "add_athlete/{paysId}",
+            arguments = listOf(navArgument("paysId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val paysId = backStackEntry.arguments?.getInt("paysId") ?: -1
+            if (paysId != -1) {
+                AthleteAdd(paysId = paysId, navController = navController)
+            } else {
+                Text("Erreur : Identifiant de bâtiment manquant")
+            }
+        }
+
         composable("joueurs_list") {
             JoueurList()
         }
 
         composable("athletes_list?paysId={paysId}") { backStackEntry ->
             val paysId = backStackEntry.arguments?.getString("paysId")?.toIntOrNull()
-            AthleteList(paysId = paysId)
+            AthleteList(paysId = paysId, navController = navController)
         }
     }
 }

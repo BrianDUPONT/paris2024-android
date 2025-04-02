@@ -1,56 +1,46 @@
 package bts.sio.paris2024.views.athletes
 
-
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import bts.sio.paris2024.model.Athlete
-import bts.sio.paris2024.model.Pays
+import androidx.navigation.NavController
+import bts.sio.paris2024.views.athletes.AthleteCard
 import bts.sio.paris2024.viewsmodel.AthleteViewModel
 import bts.sio.paris2024.viewsmodel.PaysViewModel
 
-import androidx.compose.ui.Modifier
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-
-
 @Composable
 fun AthleteList(
-    paysId: Int? = null,  // batimentId devient optionnel
+    paysId: Int? = null,
     athleteViewModel: AthleteViewModel = viewModel(),
-    paysViewModel: PaysViewModel = viewModel()  ) {
-
+    paysViewModel: PaysViewModel = viewModel(),
+    navController: NavController
+) {
     val athletes by athleteViewModel.athletes.collectAsState()
     val isLoading by athleteViewModel.isLoading.collectAsState()
     val errorMessage by athleteViewModel.errorMessage.collectAsState()
-    val pays by paysViewModel.idPays.collectAsState()
+    val pays by paysViewModel.pays.collectAsState()
 
-
-
-    // récup des données à afficher
     LaunchedEffect(paysId) {
-        if (paysId != null) {
-            paysViewModel.getPaysById(paysId)
-            athleteViewModel.getAthletesByPays(paysId)  // Charge tous les appartements
-        } else {
+        if (paysId == null) {
             athleteViewModel.getAthletes()
+        } else {
+            athleteViewModel.getAthletesByPays(paysId)
+            paysViewModel.getPays(paysId)
         }
     }
 
@@ -71,11 +61,7 @@ fun AthleteList(
                 )
             }
             else -> {
-
-
                 LazyColumn {
-
-                    // BLOC D'INFOS SUR LE BATIMENT SI SELECTIONNE AVANT
                     if (pays != null) {
                         item {
                             Column(
@@ -92,18 +78,35 @@ fun AthleteList(
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = "Nom du pays : ${pays?.nom ?: "Non défini"}",
+                                    text = "Pays : ${pays?.nom ?: "Non défini"}",
                                     style = MaterialTheme.typography.bodyLarge,
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                             }
                         }
+
+                        item {
+                            Button(
+                                onClick = {
+                                    navController.navigate("add_athlete/${paysId}")
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp)
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Center
+                                ) {
+                                    Icon(Icons.Default.Add, contentDescription = "Ajouter")
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text("Ajouter un athlete")
+                                }
+                            }
+                        }
                     }
-                    // S'il y a des appartements
+
                     if (athletes.isNotEmpty()) {
-
-
-                        // Titre Liste des appartements
                         item {
                             Text(
                                 text = "Liste des athletes",
@@ -112,29 +115,24 @@ fun AthleteList(
                                     .fillMaxWidth()
                                     .padding(vertical = 1.dp)
                                     .padding(16.dp),
-                                textAlign = TextAlign.Center, // Alignement à gauche
+                                textAlign = TextAlign.Center,
                                 color = MaterialTheme.colorScheme.primary
                             )
                         }
 
-
-                        // Liste des appartements
                         items(athletes) { athlete ->
-                            AthleteCard(athlete = athlete)
+                            AthleteCard(athlete = athlete, navController = navController)
                         }
-                    }
-
-                    else {
-                        // Il n'y a pas d'appartement pour ce batiment
+                    } else {
                         item {
                             Text(
-                                text = "Pas d'appartement pour ce batiment",
+                                text = "Pas d'athlete pour ce bâtiment",
                                 style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(vertical = 1.dp)
                                     .padding(16.dp),
-                                textAlign = TextAlign.Center, // Alignement à gauche
+                                textAlign = TextAlign.Center,
                                 color = MaterialTheme.colorScheme.primary
                             )
                         }
@@ -143,5 +141,4 @@ fun AthleteList(
             }
         }
     }
-
 }

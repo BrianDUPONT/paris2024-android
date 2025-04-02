@@ -2,10 +2,10 @@ package bts.sio.paris2024.viewsmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import bts.sio.paris2024.model.Athlete
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewModelScope
 import bts.sio.paris2024.api.RetrofitInstance
+import bts.sio.paris2024.model.Athlete
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -59,6 +59,28 @@ class AthleteViewModel : ViewModel() {
             }
         }
     }
+
+    fun addAthlete(athlete: Athlete) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+
+                // Envoi à l'API (ici, un POST)
+                val response = RetrofitInstance.api.addAthlete(athlete)
+                if (response.isSuccessful) {
+                    // Ajout réussi, on met à jour la liste des pays
+                    getAthletes() // Recharge les pays pour inclure le nouveau
+                } else {
+                    _errorMessage.value = "Erreur lors de l'ajout du athlete : ${response.message()}"
+                }
+            } catch (e: Exception) {
+                _errorMessage.value = "Erreur : ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
 
 
 }

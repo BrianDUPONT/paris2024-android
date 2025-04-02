@@ -32,8 +32,7 @@ import bts.sio.paris2024.viewsmodel.PaysViewModel
 
 @Composable
 fun PaysList(viewModel: PaysViewModel = viewModel(), navController: NavController) {
-    // Observer les données de manière réactive
-    val pays by viewModel.pays.collectAsState()
+    val lesPays by viewModel.lesPays.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
 
@@ -50,7 +49,7 @@ fun PaysList(viewModel: PaysViewModel = viewModel(), navController: NavControlle
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Liste des pays",
+                        text = "Liste des bâtiments",
                         style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.primary
@@ -58,22 +57,19 @@ fun PaysList(viewModel: PaysViewModel = viewModel(), navController: NavControlle
 
                     IconButton(
                         onClick = {
-                            // Action lorsque le bouton + est cliqué
-                            // Par exemple, naviguer vers un écran pour ajouter un pays
                             navController.navigate("add_pays")
                         }
                     ) {
                         Icon(
                             imageVector = Icons.Default.Add,
-                            contentDescription = "Ajouter un pays",
-                            modifier = Modifier.size(64.dp)
+                            contentDescription = "Ajouter un bâtiment",
+                            modifier = Modifier.size(36.dp)
                         )
                     }
                 }
-
             }
 
-            items(pays) { pays ->
+            items(lesPays) { pays ->
                 PaysCard(pays = pays, navController = navController)
             }
         }
